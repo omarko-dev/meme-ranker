@@ -5,15 +5,18 @@ let memeScores = JSON.parse(localStorage.getItem('memeScores')) || {};
 
 // Fetch memes from multiple subreddits
 async function fetchMemes() {
-    const subreddits = ['memes', 'terriblefacebookmemes', 'AdviceAnimals', 'dankmemes', 'teenagers'];
+    const subreddits = ['memes', 'terriblefacebookmemes', 'teenagers']; // Reduce the number of subreddits
     const allMemes = [];
 
-    for (const subreddit of subreddits) {
-        const response = await fetch(`https://www.reddit.com/r/${subreddit}/top.json?limit=20`); // Increase the limit to 50
+    // Fetch memes from all subreddits concurrently
+    const fetchPromises = subreddits.map(async (subreddit) => {
+        const response = await fetch(`https://www.reddit.com/r/${subreddit}/top.json?limit=5`); // Reduce the limit to 5
         const data = await response.json();
         const memes = data.data.children.map(child => child.data);
         allMemes.push(...memes);
-    }
+    });
+
+    await Promise.all(fetchPromises);
 
     // Filter out memes with broken images
     const validMemes = await Promise.all(allMemes.map(async meme => {
@@ -55,7 +58,7 @@ function displayMemes(memes) {
             memeCard.className = 'meme-card';
             memeCard.innerHTML = `
                 <div class="meme-image-container">
-                    <img src="${meme.url}" alt="Meme ${index + 1}">
+                    <img src="${meme.url}" alt="Meme ${index + 1}" loading="lazy">
                 </div>
                 <button onclick="voteForMeme('${memeId}')">Vote</button>
             `;
