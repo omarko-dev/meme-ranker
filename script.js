@@ -5,7 +5,7 @@ let memeScores = JSON.parse(localStorage.getItem('memeScores')) || {};
 
 // Fetch memes from multiple subreddits
 async function fetchMemes() {
-    const subreddits = ['memes', 'terriblefacebookmemes', 'teenagers']; // Reduce the number of subreddits
+    const subreddits = ['memes', 'terriblefacebookmemes', 'AdviceAnimals']; // Reduce the number of subreddits
     const allMemes = [];
 
     // Fetch memes from all subreddits concurrently
