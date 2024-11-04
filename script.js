@@ -9,7 +9,7 @@ async function fetchMemes() {
     const allMemes = [];
 
     for (const subreddit of subreddits) {
-        const response = await fetch(`https://www.reddit.com/r/${subreddit}/top.json?limit=50`); // Increase the limit to 50
+        const response = await fetch(`https://www.reddit.com/r/${subreddit}/top.json?limit=20`); // Increase the limit to 50
         const data = await response.json();
         const memes = data.data.children.map(child => child.data);
         allMemes.push(...memes);
