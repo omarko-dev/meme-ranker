@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meme Ranker</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <div class="logo"><span>Meme</span> <span class="blue">Ranker</span></div>
+    <button class="leaderboard-button" onclick="window.location.href='leaderboard.html'"><i class="fas fa-trophy"></i> Leaderboard</button>
+    <h1>Vote for the <span class="highlight">Best Meme</span>!</h1>
+    <div class="meme-container" id="meme-container">
+        <p id="loading-message">Loading memes...</p>
+        <!-- Memes will be dynamically inserted here -->
+    </div>
+    <p id="vote-result"></p>
+</body>
+</html>
